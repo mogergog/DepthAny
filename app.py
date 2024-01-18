@@ -1,4 +1,3 @@
-import spaces
 import gradio as gr
 import cv2
 import numpy as np
@@ -46,11 +45,6 @@ transform = Compose([
         PrepareForNet(),
 ])
 
-@spaces.GPU
-def predict_depth(model, image):
-    with torch.no_grad():
-        return model(image)
-
 with gr.Blocks(css=css) as demo:
     gr.Markdown(title)
     gr.Markdown(description)
@@ -69,7 +63,8 @@ with gr.Blocks(css=css) as demo:
         image = transform({'image': image})['image']
         image = torch.from_numpy(image).unsqueeze(0).to(DEVICE)
         
-        depth = predict_depth(model, image)
+        with torch.no_grad():
+            depth = model(image)
         depth = F.interpolate(depth[None], (h, w), mode='bilinear', align_corners=False)[0, 0]
         
         raw_depth = Image.fromarray(depth.cpu().numpy().astype('uint16'))
