@@ -12,13 +12,13 @@ from depth_anything.util.transform import Resize, NormalizeImage, PrepareForNet
 
 css = """
 #img-display-container {
-    max-height: 50vh;
+    max-height: 100vh;
     }
 #img-display-input {
-    max-height: 40vh;
+    max-height: 80vh;
     }
 #img-display-output {
-    max-height: 40vh;
+    max-height: 80vh;
     }
     
 """
