@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import os
 from PIL import Image
+import spaces
 import torch
 import torch.nn.functional as F
 from torchvision.transforms import Compose
@@ -44,7 +45,7 @@ transform = Compose([
         PrepareForNet(),
 ])
 
-
+@spaces.GPU
 @torch.no_grad()
 def predict_depth(model, image):
     return model(image)
