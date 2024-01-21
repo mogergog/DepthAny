@@ -1,8 +1,8 @@
 import gradio as gr
 import cv2
 import numpy as np
+import os
 from PIL import Image
-import spaces
 import torch
 import torch.nn.functional as F
 from torchvision.transforms import Compose
@@ -21,7 +21,6 @@ css = """
 #img-display-output {
     max-height: 80vh;
     }
-
 """
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 model = DPT_DINOv2(encoder='vitl', features=256, out_channels=[256, 512, 1024, 1024]).to(DEVICE).eval()
@@ -29,7 +28,6 @@ model.load_state_dict(torch.load('checkpoints/depth_anything_vitl14.pth'))
 
 title = "# Depth Anything"
 description = """Official demo for **Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data**.
-
 Please refer to our [paper](), [project page](https://depth-anything.github.io), or [github](https://github.com/LiheYoung/Depth-Anything) for more details."""
 
 transform = Compose([
@@ -47,7 +45,6 @@ transform = Compose([
 ])
 
 
-@spaces.GPU
 @torch.no_grad()
 def predict_depth(model, image):
     return model(image)
@@ -85,9 +82,13 @@ with gr.Blocks(css=css) as demo:
         return [colored_depth, tmp.name]
 
     submit.click(on_submit, inputs=[input_image], outputs=[depth_image, raw_file])
-    examples = gr.Examples(examples=["examples/flower.png", "examples/roller_coaster.png", "examples/hall.png", "examples/car.png", "examples/person.png"],
-                           inputs=[input_image])
+    
+    example_files = os.listdir('examples')
+    example_files.sort()
+    example_files = [os.path.join('examples', filename) for filename in example_files]
+    examples = gr.Examples(examples=example_files, inputs=[input_image])
 
 
 if __name__ == '__main__':
     demo.queue().launch()
+    
