@@ -90,7 +90,7 @@ with gr.Blocks(css=css) as demo:
     example_files = os.listdir('examples')
     example_files.sort()
     example_files = [os.path.join('examples', filename) for filename in example_files]
-    examples = gr.Examples(examples=example_files, inputs=[input_image], outputs=[depth_image_slider, raw_file], fn=on_submit, cache_examples=True)
+    examples = gr.Examples(examples=example_files, inputs=[input_image], outputs=[depth_image_slider, raw_file], fn=on_submit, cache_examples=False)
 
 
 if __name__ == '__main__':
