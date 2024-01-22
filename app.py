@@ -60,7 +60,7 @@ with gr.Blocks(css=css) as demo:
 
     with gr.Row():
         input_image = gr.Image(label="Input Image", type='numpy', elem_id='img-display-input')
-        depth_image_slider = ImageSlider(label="Depth Map with Slider View", elem_id='img-display-output', position=0)
+        depth_image_slider = ImageSlider(label="Depth Map with Slider View", elem_id='img-display-output', position=0.5,)
     raw_file = gr.File(label="16-bit raw depth (can be considered as disparity)")
     submit = gr.Button("Submit")
 
