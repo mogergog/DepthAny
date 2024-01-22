@@ -1,3 +1,4 @@
+gradio_imageslider
 torch
 torchvision
 opencv-python
