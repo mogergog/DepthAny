@@ -30,7 +30,7 @@ model.load_state_dict(torch.load('checkpoints/depth_anything_vitl14.pth'))
 
 title = "# Depth Anything"
 description = """Official demo for **Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data**.
-Please refer to our [paper](), [project page](https://depth-anything.github.io), or [github](https://github.com/LiheYoung/Depth-Anything) for more details."""
+Please refer to our [paper](https://arxiv.org/abs/2401.10891), [project page](https://depth-anything.github.io), or [github](https://github.com/LiheYoung/Depth-Anything) for more details."""
 
 transform = Compose([
         Resize(
@@ -56,6 +56,7 @@ with gr.Blocks(css=css) as demo:
     gr.Markdown(title)
     gr.Markdown(description)
     gr.Markdown("### Depth Prediction demo")
+    gr.Markdown("You can slide the output to compare the depth prediction with input image")
 
     with gr.Row():
         input_image = gr.Image(label="Input Image", type='numpy', elem_id='img-display-input')
