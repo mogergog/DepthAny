@@ -26,7 +26,7 @@ css = """
 """
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 encoder = 'vitl' # can also be 'vitb' or 'vitl'
-model = DepthAnything.from_pretrained(f"LiheYoung/depth_anything_{encoder}14")
+model = DepthAnything.from_pretrained(f"LiheYoung/depth_anything_{encoder}14").to(DEVICE).eval()
 
 title = "# Depth Anything"
 description = """Official demo for **Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data**.
