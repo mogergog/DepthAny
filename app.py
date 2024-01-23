@@ -10,7 +10,7 @@ from torchvision.transforms import Compose
 import tempfile
 from gradio_imageslider import ImageSlider
 
-from depth_anything.dpt import DPT_DINOv2
+from depth_anything.dpt import DepthAnything
 from depth_anything.util.transform import Resize, NormalizeImage, PrepareForNet
 
 css = """
@@ -25,8 +25,8 @@ css = """
     }
 """
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-model = DPT_DINOv2(encoder='vitl', features=256, out_channels=[256, 512, 1024, 1024]).to(DEVICE).eval()
-model.load_state_dict(torch.load('checkpoints/depth_anything_vitl14.pth'))
+encoder = 'vitl' # can also be 'vitb' or 'vitl'
+model = DepthAnything.from_pretrained(f"LiheYoung/depth_anything_{encoder}14")
 
 title = "# Depth Anything"
 description = """Official demo for **Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data**.
