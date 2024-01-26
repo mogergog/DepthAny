@@ -88,9 +88,9 @@ with gr.Blocks(css=css) as demo:
 
         submit.click(on_submit, inputs=[input_image], outputs=[depth_image_slider, raw_file])
 
-        example_files = os.listdir('assets/examples')
+        example_files = os.listdir('examples')
         example_files.sort()
-        example_files = [os.path.join('assets/examples', filename) for filename in example_files]
+        example_files = [os.path.join('examples', filename) for filename in example_files]
         examples = gr.Examples(examples=example_files, inputs=[input_image], outputs=[depth_image_slider, raw_file], fn=on_submit, cache_examples=True)
 
     with gr.Tab("Video Depth Prediction"):
@@ -139,9 +139,9 @@ with gr.Blocks(css=css) as demo:
         
         submit.click(on_submit, inputs=[input_video], outputs=processed_video)
 
-        example_files = os.listdir('assets/examples_video')
+        example_files = os.listdir('examples_video')
         example_files.sort()
-        example_files = [os.path.join('assets/examples_video', filename) for filename in example_files]
+        example_files = [os.path.join('examples_video', filename) for filename in example_files]
         examples = gr.Examples(examples=example_files, inputs=[input_video], outputs=processed_video, fn=on_submit, cache_examples=True)
         
 
