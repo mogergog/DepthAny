@@ -58,3 +58,4 @@ examples/examples_video/davis_rollercoaster.mp4 filter=lfs diff=lfs merge=lfs -t
 examples/examples_video/davis_seasnake.mp4 filter=lfs diff=lfs merge=lfs -text
 examples_video/davis_rollercoaster.mp4 filter=lfs diff=lfs merge=lfs -text
 examples_video/davis_seasnake.mp4 filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
